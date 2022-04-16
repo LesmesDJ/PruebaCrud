@@ -15,21 +15,28 @@ import java.util.Optional;
 @Getter
 @Setter
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuario")
+    @Column(name = "id_usuario", nullable = false, unique = true)
     private int idUsuario;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuIngreso")
     private List<Mercancia> usuIngreso;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuModificacion")
     private List<Mercancia> usuModificacion;
+
     @Column(name = "nombre")
     private String nombre;
+
     @Column(name = "edad")
     private int edad;
+
     @Column(name = "ingreso")
     private Date ingreso;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cargo", referencedColumnName = "idCargo")
+
+    @ManyToOne
+    @JoinColumn(name = "cargo")
     private Cargo cargo;
 }

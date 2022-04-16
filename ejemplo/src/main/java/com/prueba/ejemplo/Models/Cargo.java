@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cargo", schema = "public")
@@ -16,11 +17,11 @@ public class Cargo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCargo")
-    private int idCargo;
+    @Column(name = "id_cargo", nullable = false, unique = true)
+    private int id_cargo;
 
-    @OneToOne(mappedBy = "cargo")
-    private Usuario usuario;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "cargo")
+    private List<Usuario> usuario;*/
 
     @Column(name = "descripcion")
     private String descripcion;

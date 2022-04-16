@@ -15,11 +15,11 @@ public class Mercancia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idMercancia")
+    @Column(name = "id_mercancia", nullable = false, unique = true)
     private int idMercancia;
 
-    @Column(name = "descipcion")
-    private String descipcion;
+    @Column(name = "descripcion")
+    private String descripcion;
 
     @Column(name = "ingreso")
     private Date ingreso;
@@ -28,11 +28,11 @@ public class Mercancia {
     private Date modificacion;
 
     @ManyToOne
-    @JoinColumn(name = "usuIngreso")
+    @JoinColumn(name = "usu_ingreso")
     private Usuario usuIngreso;
 
     @ManyToOne
-    @JoinColumn(name = "usuModificacion")
+    @JoinColumn(name = "usu_modificacion")
     private Usuario usuModificacion;
 
     @Column(name = "cantidad")
