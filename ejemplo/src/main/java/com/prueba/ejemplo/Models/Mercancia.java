@@ -4,6 +4,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "mercancia")
@@ -27,10 +28,6 @@ public class Mercancia {
     private Date modificacion;
 
     @ManyToOne
-    @JoinColumn(name = "producto")
-    private Producto producto;
-
-    @ManyToOne
     @JoinColumn(name = "usuIngreso")
     private Usuario usuIngreso;
 
@@ -40,5 +37,13 @@ public class Mercancia {
 
     @Column(name = "cantidad")
     private String cantidad;
+
+    @JoinTable(
+            name = "REL_MERCANCIA_PRODUCTO",
+            joinColumns = @JoinColumn(name = "fk_mercancia", nullable = false),
+            inverseJoinColumns = @JoinColumn(name="fk_producto", nullable = false)
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Producto> producto;
 
 }

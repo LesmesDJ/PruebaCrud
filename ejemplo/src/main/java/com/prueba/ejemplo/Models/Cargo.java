@@ -19,6 +19,9 @@ public class Cargo {
     @Column(name = "idCargo")
     private int idCargo;
 
+    @OneToOne(mappedBy = "cargo")
+    private Usuario usuario;
+
     @Column(name = "descripcion")
     private String descripcion;
 
