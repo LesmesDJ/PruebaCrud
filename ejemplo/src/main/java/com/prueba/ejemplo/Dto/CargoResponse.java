@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CargoResponse {
-    private Long id;
+    private int id;
     private String descripcion;
+    private int usuario;
 }

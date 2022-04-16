@@ -36,7 +36,7 @@ public class Mercancia {
     private Usuario usuModificacion;
 
     @Column(name = "cantidad")
-    private String cantidad;
+    private int cantidad;
 
     @JoinTable(
             name = "REL_MERCANCIA_PRODUCTO",
