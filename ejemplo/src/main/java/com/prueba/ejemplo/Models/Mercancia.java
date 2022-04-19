@@ -38,12 +38,4 @@ public class Mercancia {
     @Column(name = "cantidad")
     private int cantidad;
 
-    @JoinTable(
-            name = "REL_MERCANCIA_PRODUCTO",
-            joinColumns = @JoinColumn(name = "fk_mercancia", nullable = false),
-            inverseJoinColumns = @JoinColumn(name="fk_producto", nullable = false)
-    )
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Producto> producto;
-
 }

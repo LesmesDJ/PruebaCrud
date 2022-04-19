@@ -1,9 +1,7 @@
 package com.prueba.ejemplo.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,10 +9,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "cargo", schema = "public")
-
 @Getter
 @Setter
-
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cargo {
 
     @Id
@@ -29,4 +28,7 @@ public class Cargo {
     @Column(name = "descripcion")
     private String descripcion;
 
+    public Cargo(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }
