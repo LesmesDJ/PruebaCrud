@@ -1,5 +1,6 @@
 package com.prueba.ejemplo.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +16,11 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto", nullable = false, unique = true)
     private int idProducto;
+
     @Column(name = "descripcion")
     private String descripcion;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "producto")
     private List<Mercancia> mercancia;
 }

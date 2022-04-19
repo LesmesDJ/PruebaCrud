@@ -1,7 +1,11 @@
 package com.prueba.ejemplo.Controllers;
 
 import com.prueba.ejemplo.Models.Cargo;
+<<<<<<< HEAD
 import com.prueba.ejemplo.Models.Mercancia;
+=======
+import com.prueba.ejemplo.Models.Producto;
+>>>>>>> 2b9f6784a8fdfc00b95783ccaeb6544630c8a14b
 import com.prueba.ejemplo.Models.Usuario;
 import com.prueba.ejemplo.Services.CrudServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +28,7 @@ public class ServicesController {
 
     @GetMapping(value = "/cargo", produces = MediaType.APPLICATION_JSON)
     public ResponseEntity<?> listCargo () {
-        System.out.println("Entra Servicio -------------------");
         List<Cargo> lstCargo = crudServices.lstCargo();
-        System.out.println("Responde -------------------------");
         return new ResponseEntity<List<Cargo>>(lstCargo, HttpStatus.OK);
     }
     @GetMapping(value = "/usuario", produces = MediaType.APPLICATION_JSON)
@@ -41,4 +43,15 @@ public class ServicesController {
         return new ResponseEntity<List<Mercancia>>(lstMercancia, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/usuario", produces = MediaType.APPLICATION_JSON)
+    public ResponseEntity<?> listUsuario (){
+        List<Usuario> lstUsuario = crudServices.lstUsuario();
+        return  new ResponseEntity<List<Usuario>>(lstUsuario, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/producto", produces = MediaType.APPLICATION_JSON)
+    public ResponseEntity<?> listProducto (){
+        List<Producto> lstProducto = crudServices.lstProducto();
+        return new ResponseEntity<List<Producto>>(lstProducto, HttpStatus.OK);
+    }
 }

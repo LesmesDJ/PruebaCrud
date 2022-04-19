@@ -1,5 +1,6 @@
 package com.prueba.ejemplo.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,14 @@ public class Usuario {
     @Column(name = "id_usuario", nullable = false, unique = true)
     private int idUsuario;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuIngreso")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuIngreso",
+            fetch = FetchType.LAZY)
     private List<Mercancia> usuIngreso;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuModificacion")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuModificacion",
+            fetch = FetchType.LAZY)
     private List<Mercancia> usuModificacion;
 
     @Column(name = "nombre")
@@ -36,7 +41,7 @@ public class Usuario {
     @Column(name = "ingreso")
     private Date ingreso;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "cargo")
     private Cargo cargo;
 }
