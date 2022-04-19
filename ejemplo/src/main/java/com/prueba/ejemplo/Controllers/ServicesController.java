@@ -1,6 +1,8 @@
 package com.prueba.ejemplo.Controllers;
 
 import com.prueba.ejemplo.Models.Cargo;
+import com.prueba.ejemplo.Models.Producto;
+import com.prueba.ejemplo.Models.Usuario;
 import com.prueba.ejemplo.Services.CrudServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,10 +24,19 @@ public class ServicesController {
 
     @GetMapping(value = "/cargo", produces = MediaType.APPLICATION_JSON)
     public ResponseEntity<?> listCargo () {
-        System.out.println("Entra Servicio -------------------");
         List<Cargo> lstCargo = crudServices.lstCargo();
-        System.out.println("Responde -------------------------");
         return new ResponseEntity<List<Cargo>>(lstCargo, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/usuario", produces = MediaType.APPLICATION_JSON)
+    public ResponseEntity<?> listUsuario (){
+        List<Usuario> lstUsuario = crudServices.lstUsuario();
+        return  new ResponseEntity<List<Usuario>>(lstUsuario, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/producto", produces = MediaType.APPLICATION_JSON)
+    public ResponseEntity<?> listProducto (){
+        List<Producto> lstProducto = crudServices.lstProducto();
+        return new ResponseEntity<List<Producto>>(lstProducto, HttpStatus.OK);
+    }
 }
