@@ -38,4 +38,8 @@ public class CrudServices {
 
     public void saveCargo (Cargo cargo) { cargoRepository.save(cargo);}
 
+    public void saveUsuario (Usuario usuario) {
+        usuarioRepository.save(usuario);
+    }
+
 }

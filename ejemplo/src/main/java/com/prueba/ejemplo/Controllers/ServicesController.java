@@ -55,6 +55,7 @@ public class ServicesController {
         if(usuarioResponse.getNombre()==null)
             return new ResponseEntity<>(new Mensaje("Debe diligenciar el nombre"), HttpStatus.BAD_REQUEST);
         Usuario usuario = new Usuario(usuarioResponse.getNombre(), usuarioResponse.getCargo(), usuarioResponse.getEdad(), usuarioResponse.getIngreso());
+        crudServices.saveUsuario(usuario);
             return new ResponseEntity(new Mensaje("Usuario registrado"), HttpStatus.OK);
     }
 }
