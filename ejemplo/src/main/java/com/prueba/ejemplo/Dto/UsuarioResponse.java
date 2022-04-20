@@ -1,9 +1,6 @@
 package com.prueba.ejemplo.Dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -11,6 +8,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 
 public class UsuarioResponse {
 
@@ -18,7 +17,7 @@ public class UsuarioResponse {
 
     private String nombre;
 
-    private String edad;
+    private int edad;
 
     private Date ingreso;
 

@@ -16,7 +16,9 @@ public class CrudServices {
 
     @Autowired
     CargoRepository cargoRepository;
+    @Autowired
     MercanciaRepository mercanciaRepository;
+    @Autowired
     UsuarioRepository usuarioRepository;
 
     public List<Cargo> lstCargo (){
@@ -25,10 +27,12 @@ public class CrudServices {
 
 
     public  List<Mercancia> lstMercancia(){
+
         return mercanciaRepository.findAll();
     }
 
     public List<Usuario> lstUsuario () {
+
         return usuarioRepository.findAll();
     }
 

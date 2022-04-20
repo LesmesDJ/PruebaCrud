@@ -1,15 +1,19 @@
 package com.prueba.ejemplo.Models;
 
 import javax.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
+
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "mercancia")
+@Table(name = "mercancia", schema = "public")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Mercancia {
 

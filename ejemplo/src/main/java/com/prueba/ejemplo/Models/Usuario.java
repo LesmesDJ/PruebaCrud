@@ -1,20 +1,19 @@
 package com.prueba.ejemplo.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 @Table(name = "usuario", schema = "public")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario {
 
     @Id
@@ -41,7 +40,16 @@ public class Usuario {
     @Column(name = "ingreso")
     private Date ingreso;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "cargo")
-    private Cargo cargo;
+    //@JsonIgnore
+    //@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    //@JoinColumn(name = "cargo")
+    @Column(name = "cargo")
+    private int cargo;
+
+    public Usuario(String nombre, int cargo, int edad, Date ingreso) {
+        this.nombre = nombre;
+        this.cargo = cargo;
+        this.edad = edad;
+        this.ingreso = ingreso;
+    }
 }

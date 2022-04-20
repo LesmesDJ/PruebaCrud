@@ -2,6 +2,7 @@ package com.prueba.ejemplo.Controllers;
 
 import com.prueba.ejemplo.Dto.CargoResponse;
 import com.prueba.ejemplo.Dto.Mensaje;
+import com.prueba.ejemplo.Dto.UsuarioResponse;
 import com.prueba.ejemplo.Models.Cargo;
 import com.prueba.ejemplo.Models.Mercancia;
 import com.prueba.ejemplo.Models.Usuario;
@@ -37,7 +38,7 @@ public class ServicesController {
     @GetMapping(value = "/usuario", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listUsuario (){
         List<Usuario> lstUsuario = crudServices.lstUsuario();
-        return  new ResponseEntity<List<Usuario>>(lstUsuario, HttpStatus.OK);
+        return new ResponseEntity<List<Usuario>>(lstUsuario, HttpStatus.OK);
     }
 
     @PostMapping(value = "/crear")
@@ -49,4 +50,11 @@ public class ServicesController {
             return new ResponseEntity(new Mensaje("Cargo registrado"), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/crearUsuario")
+    public ResponseEntity<?> crearUsuario (@RequestBody UsuarioResponse usuarioResponse){
+        if(usuarioResponse.getNombre()==null)
+            return new ResponseEntity<>(new Mensaje("Debe diligenciar el nombre"), HttpStatus.BAD_REQUEST);
+        Usuario usuario = new Usuario(usuarioResponse.getNombre(), usuarioResponse.getCargo(), usuarioResponse.getEdad(), usuarioResponse.getIngreso());
+            return new ResponseEntity(new Mensaje("Usuario registrado"), HttpStatus.OK);
+    }
 }
