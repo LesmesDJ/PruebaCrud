@@ -16,6 +16,7 @@ public class MercanciaResponse {
     private String descripcion;
     private Date ingreso;
     private Date modificacion;
+    private String producto;
     private int usuIngreso;
     private int usuModificacion;
     private int cantidad;

@@ -42,4 +42,5 @@ public class CrudServices {
         usuarioRepository.save(usuario);
     }
 
+    public void saveMercancia (Mercancia mercancia) { mercanciaRepository.save(mercancia); }
 }

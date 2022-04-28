@@ -2,6 +2,7 @@ package com.prueba.ejemplo.Controllers;
 
 import com.prueba.ejemplo.Dto.CargoResponse;
 import com.prueba.ejemplo.Dto.Mensaje;
+import com.prueba.ejemplo.Dto.MercanciaResponse;
 import com.prueba.ejemplo.Dto.UsuarioResponse;
 import com.prueba.ejemplo.Models.Cargo;
 import com.prueba.ejemplo.Models.Mercancia;
@@ -58,4 +59,26 @@ public class ServicesController {
         crudServices.saveUsuario(usuario);
             return new ResponseEntity(new Mensaje("Usuario registrado"), HttpStatus.OK);
     }
+
+    @PostMapping(value = "/crearMercancia")
+    public ResponseEntity<?> crearMercancia (@RequestBody MercanciaResponse mercanciaResponse){
+        //Validaciones
+        if (mercanciaResponse.getDescripcion() == null)
+            return new ResponseEntity<>(new Mensaje("Debe diligenciar el nombre"), HttpStatus.BAD_REQUEST);
+        else if (mercanciaResponse.getIngreso() == null)
+            return new ResponseEntity<>(new Mensaje("Debe diligenciar la fecha de ingreso"), HttpStatus.BAD_REQUEST);
+        else if (mercanciaResponse.getProducto() == null)
+            return new ResponseEntity<>(new Mensaje("Debe diligenciar el producto"), HttpStatus.BAD_REQUEST);
+        else if (mercanciaResponse.getUsuIngreso() == 0)
+            return new ResponseEntity<>(new Mensaje("Debe seleccionar el usuario que realiza el ingreso de la mercancia"), HttpStatus.BAD_REQUEST);
+        else if (mercanciaResponse.getCantidad() == 0)
+            return new ResponseEntity<>(new Mensaje("Debe diligenciar la cantidad de productos"), HttpStatus.BAD_REQUEST);
+
+        //Create object Mercancia for insert
+        //Example Json: {"descripcion":"Primer insercion mercancia","ingreso":"2022-14-27","modificacion":null,"producto":"llanta","usuIngreso":1,"usuModificacion":1,"cantidad":1}
+        Mercancia mercancia = new Mercancia(mercanciaResponse.getDescripcion(), mercanciaResponse.getIngreso(), mercanciaResponse.getModificacion(), mercanciaResponse.getProducto(), mercanciaResponse.getUsuIngreso(), mercanciaResponse.getUsuModificacion(), mercanciaResponse.getCantidad());
+        crudServices.saveMercancia(mercancia);
+        return new ResponseEntity(new Mensaje("Mercancia registrada"), HttpStatus.OK);
+    }
+
 }
